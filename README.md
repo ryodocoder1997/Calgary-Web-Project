@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Commit Message Guidelines
 
-## Getting Started
+We use the [`@commitlint/config-conventional`](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) preset to enforce commit message structure.
 
-First, run the development server:
+## Tags (Type - Required)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+*   `feat`: New feature
+    *   Example: `feat(auth): implement user login`
+*   `fix`: Bug fix
+    *   Example: `fix(ui): correct button alignment`
+*   `docs`: Documentation changes
+    *   Example: `docs: update api documentation`
+*   `style`: Code formatting (no logic change)
+    *   Example: `style(components): fix formatting of components`
+*   `refactor`: Code refactoring (no new features or bug fixes)
+    *   Example: `refactor(database): optimize database queries`
+*   `perf`: Performance improvement
+    *   Example: `perf(data-processing): improve data caching`
+*   `test`: Add or modify tests
+    *   Example: `test(auth): add tests for login function`
+*   `build`: Changes to build system/dependencies
+    *   Example: `build: upgrade webpack version`
+*   `ci`: Changes to CI/CD pipeline
+    *   Example: `ci: update deployment workflow`
+*   `chore`: Other non-`src`/`test` changes
+    *   Example: `chore: update dependencies`
+*  `revert`: Reverts a previous commit
+    *    Example: `revert: feat(user): revert user login feature`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Rules
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1.  **Format:** `<type>(<scope>): <description>`
+    *   `type`:  Use a tag from the list above (required) and must be in lowercase.
+    *   `scope` (Optional): A specific module, component, or area of the codebase affected by the change. If the change impacts multiple areas or cannot be specified, it can be omitted.
+    *   `description`: Concise summary of the change in imperative mood (e.g., "add...", "fix..."). Must be in lowercase.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2.  **Description:**
+    *   Maximum 50 characters.
+    *    Must be in lowercase.
+    *   Use imperative verb tense (e.g., "fix", "add", not "fixed" or "adding").
+    *   Do not end with a period.
 
-## Learn More
+3.  **Body (Optional):**
+    *   More detail if needed, separate from the subject with a blank line.
 
-To learn more about Next.js, take a look at the following resources:
+4.  **Footer (Optional):**
+    *   For issues, use `Closes #123`.
+    *   Use `BREAKING CHANGE: <Description>` for breaking changes. A commit with a breaking change **must** include the breaking change footer.
+    *   Separate from body with a blank line.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Examples
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+*   `feat(user): add user profile editing`
+*   `fix(form): correct validation error messages`
+*   `docs: update installation guide`
+*   `refactor(auth): improve login logic`
+*   `test(auth): add unit tests for user service`
+*   `build: upgrade node.js version`
+*   `chore: update dependencies`
+*  `revert: fix(auth): revert login logic`
+*   `feat(payment): implement new payment gateway`
 
-## Deploy on Vercel
+    this change introduces a new payment method and improves the current flow.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    closes #456
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    `BREAKING CHANGE: the payment api has been updated with new request requirements.`
+
+**Important:** Your commits will be validated against these rules automatically.
