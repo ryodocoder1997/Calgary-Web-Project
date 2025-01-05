@@ -11,7 +11,13 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        navtext: 'var(--nav-text)',
       },
+    },
+  },
+  variants: {
+    extend: {
+      display: ['group-hover'],
     },
   },
   plugins: [],
