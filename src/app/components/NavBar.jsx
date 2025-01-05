@@ -6,9 +6,9 @@ import { ChevronDownIcon } from '@heroicons/react/16/solid'
 
 export default function NavBar() {
   return (
-    <div className='flex justify-between border border-zinc-300 items-center pt-3 pb-3 pr-8 pl-8 bg-zinc-50 text-zinc-700 rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
+    <div className='flex justify-between border border-zinc-300 items-center pt-3 pb-3 pr-8 pl-8 bg-background text-zinc-700 rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
       <div className='flex flex-col'>
-        <text className='text-lg font-bold leading-tight text-background'>
+        <text className='text-lg font-bold leading-tight text-foreground'>
           Young Viet
         </text>
         <text className='text-lg font-bold text-primary-600'>@YYC</text>

@@ -76,12 +76,13 @@
   --warning-400: #de9c1c;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Dinh Anh: I commented this out for now because it overrides the color set up above */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   /* color: var(--foreground); */
