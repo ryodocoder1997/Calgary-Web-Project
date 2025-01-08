@@ -2,20 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Dinh Anh: CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
+:root {
+  /* Dinh Anh: Color Variables */
+
+  /* Base Colors */
+  --background: #fff;
+  --foreground: #000;
+
+  /* Zinc Palette */
+  --zinc-50: #fff;
+  --zinc-100: #fafafa;
+  --zinc-200: #f4f4f5;
+  --zinc-300: #e4e4e7;
+  --zinc-400: #d4d4d8;
+  --zinc-500: #a1a1aa;
+  --zinc-600: #71717a;
+  --zinc-700: #52525b;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+
+  /* Primary Palette */
+  --primary-50: #fdf2f8;
+  --primary-100: #fce7f3;
+  --primary-200: #fbcfe8;
+  --primary-300: #f9a8d4;
+  --primary-400: #f683c2;
+  --primary-500: #f467b4;
+  --primary-600: #f354ab;
+  --primary-700: #f1379c; /* Need change: Repititive Color Code */
+  --primary-800: #9d174d; /* Need change: Repititive Color Code */
+  --primary-900: #831843; /* Need change: Repititive Color Code */
+
+  /* Secondary Palette */
+  --secondary-50: #fefaf6;
+  --secondary-100: #f8f3ed;
+  --secondary-200: #f2e9de;
+  --secondary-300: #eadbc8;
+  --secondary-400: #dfc9ac;
+  --secondary-500: #d0ae8c;
+  --secondary-600: #c1936a;
+  --secondary-700: #a8764c;
+  --secondary-800: #764224;
+  --secondary-900: #432d1d;
+
+  /* Danger Palette */
+  --danger-100: #fff7f5;
+  --danger-200: #fedcdc;
+  --danger-300: #f87171; /* Need change: Incorrect Color */
+  --danger-400: #b41d08;
+
+  /* Kale Palette */
+  --kale-100: #f7fcfc;
+  --kale-200: #bbf7d0;
+  --kale-300: #22c55e;
+  --kale-400: #16a34a;
+
+  /* Info Palette */
+  --info-100: #eff6ff;
+  --info-200: #bfdbfe;
+  --info-300: #3b82f6;
+  --info-400: #0284c7; /* Need change: Incorrect color */
+
+  /* Warning Palette */
+  --warning-100: #fffaf2;
+  --warning-200: #fef08a; /* Need change: Incorrect color */
+  --warning-300: #e9b550;
+  --warning-400: #de9c1c;
+}
+
+/* Dinh Anh: I commented this out for now because it overrides the color set up above */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  /* color: var(--foreground); */
+  background: var(--primary-50);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 10px 50px; /* Dinh Anh: Add margin */
 }

@@ -15,6 +15,9 @@
   "dependencies": {
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
+    "flowbite": "^2.5.2",
     "next": "15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
