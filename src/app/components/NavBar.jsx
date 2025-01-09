@@ -17,7 +17,7 @@ export default function NavBar() {
       <div className='flex'>
         <ul className='flex items-center'>
           <li className='mr-10'>
-            <Link href='#'>Home</Link>
+            <Link href='/'>Home</Link>
           </li>
           <li className='mr-10'>
             <Link href='/news'>News</Link>

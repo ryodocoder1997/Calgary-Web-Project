@@ -16,7 +16,7 @@ export default function NavBar() {
       </div>
       <div className='pt-5 pr-3'>
         <div className='grid grid-cols-3 gap-x-9 gap-y-3 text-secondary-700'>
-          <Link href='#' className='text-sm'>
+          <Link href='/news' className='text-sm'>
             News
           </Link>
           <Link href='#' className='text-sm'>
