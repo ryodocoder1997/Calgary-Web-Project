@@ -87,6 +87,11 @@ export default {
           400: 'var(--warning-400)',
         },
       },
+      // Font Variants
+      fontFamily: {
+        primary: 'var(--font-crimson-pro)',
+        secondary: 'var(--font-mulish)',
+      },
     },
   },
   plugins: [],

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function NavBar() {
+export default function Footer() {
   return (
     <div className='mt-40 flex justify-between border border-secondary-500 pt-3 pb-3 pr-8 pl-8 bg-secondary-100 text-zinc-700 rounded-tl-none rounded-tr-[3rem] rounded-bl-[3rem] rounded-br-none'>
       <div className='flex flex-col pt-4 pb-4 pl-3'>

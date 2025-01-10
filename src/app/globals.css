@@ -74,6 +74,10 @@
   --warning-200: #fef08a; /* Need change: Incorrect color */
   --warning-300: #e9b550;
   --warning-400: #de9c1c;
+
+  /* Font Variable */
+  --font-mulish: 'Mulish', sans-serif;
+  --font-crimson-pro: 'Crimson Pro', serif;
 }
 
 /* Dinh Anh: I commented this out for now because it overrides the color set up above */
@@ -83,10 +87,3 @@
     --foreground: #ededed;
   }
 } */
-
-body {
-  /* color: var(--foreground); */
-  background: var(--primary-50);
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 10px 50px; /* Dinh Anh: Add margin */
-}

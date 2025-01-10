@@ -9,7 +9,7 @@ export default function NavBar() {
   return (
     <div className='flex justify-between border border-zinc-300 items-center pt-3 pb-3 pr-8 pl-8 bg-background text-zinc-700 rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
       <div className='flex flex-col'>
-        <p className='text-lg font-bold leading-tight text-foreground'>
+        <p className='text-lg font-primary leading-tight text-foreground'>
           Young Viet
         </p>
         <p className='text-lg font-bold text-primary-600'>@YYC</p>
