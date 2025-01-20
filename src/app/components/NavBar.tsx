@@ -7,8 +7,8 @@ import Link from 'next/link'
 
 function NavBar() {
   return (
-    <div className='px-6'>
-      <div className='flex justify-between mx-auto my-3 px-5 py-2.5 w-full max-w-[1140px] h-[76px] items-center bg-white text-zinc-700 border rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:max-w-[834px] max-tablet:text-white max-tablet:border-0'>
+    <div className='px-6 sticky'>
+      <div className='flex justify-between mx-auto my-3 px-5 py-2.5 w-full max-w-[1140px] h-[76px] items-center bg-white text-zinc-700 border rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:max-w-[834px]'>
         <div className='max-w-[252px]'>
           <svg
             width='100'
@@ -71,7 +71,7 @@ function NavBar() {
             />
           </svg>
         </div>
-        <div className='flex max-w-[535px] items-center'>
+        <div className='lg:flex max-w-[535px] items-center hidden'>
           <Link
             className='px-4 py-4 mr-2 w-[77px] min-h-11 text-center'
             href='/'
@@ -88,9 +88,9 @@ function NavBar() {
             <Link className='mr-1' href='#'>
               Resources
             </Link>
-            <div>
+            <div className='flex items-center'>
               <Menu>
-                <MenuButton className='flex items-center'>
+                <MenuButton className='hidden lg:block'>
                   <ChevronDownIcon className='size-5 fill-zinc-700' />
                 </MenuButton>
                 <MenuItems
@@ -156,7 +156,7 @@ function NavBar() {
             Search...
           </button>
         </div>
-        <div className='flex max-w-[252px] justify-end items-center'>
+        <div className='lg:flex max-w-[252px] justify-end items-center hidden'>
           <div className='pr-2 w-[66px]'>
             <Menu>
               <MenuButton className='flex items-center'>
@@ -226,6 +226,30 @@ function NavBar() {
             </Menu>
           </div>
           <p className='w-[77px]'>Sign In</p>
+        </div>
+        <div className='flex relative lg:hidden '>
+          <svg
+            width='44'
+            height='44'
+            viewBox='0 0 44 44'
+            fill='none'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              d='M12.0488 18.0195H31.9506'
+              stroke='#27272A'
+              strokeWidth='1.71'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+            <path
+              d='M12.0488 25.9805H31.9506'
+              stroke='#27272A'
+              strokeWidth='1.71'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
         </div>
       </div>
     </div>
