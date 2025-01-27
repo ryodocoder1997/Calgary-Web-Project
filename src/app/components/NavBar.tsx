@@ -1,14 +1,22 @@
 // Dinh Anh: NavBar component
 
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import Link from 'next/link'
 
 function NavBar() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <div className='px-6 sticky'>
-      <div className='flex justify-between mx-auto my-3 px-5 py-2.5 w-full max-w-[1140px] h-[76px] items-center bg-white text-zinc-700 border rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:max-w-[834px]'>
+      <div className='flex justify-between mx-auto my-3 px-5 py-2.5 w-full max-w-[1140px] h-[76px] items-center bg-white text-zinc-700 border rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:max-w-[834px] max-lg:h-fit max-lg:pb-16 max-sm:max-w-[375px] max-sm:h-fit max-sm:pb-[72px]'>
         <div className='max-w-[252px]'>
           <svg
             width='100'
@@ -156,8 +164,8 @@ function NavBar() {
             Search...
           </button>
         </div>
-        <div className='lg:flex max-w-[252px] justify-end items-center hidden'>
-          <div className='pr-2 w-[66px]'>
+        <div className='flex max-w-[252px] justify-end items-center'>
+          <div className='pr-2 w-[66px] lg:flex hidden'>
             <Menu>
               <MenuButton className='flex items-center'>
                 <p className='flex font-bold'>
@@ -225,33 +233,154 @@ function NavBar() {
               </MenuItems>
             </Menu>
           </div>
-          <p className='w-[77px]'>Sign In</p>
-        </div>
-        <div className='flex relative lg:hidden '>
-          <svg
-            width='44'
-            height='44'
-            viewBox='0 0 44 44'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M12.0488 18.0195H31.9506'
-              stroke='#27272A'
-              strokeWidth='1.71'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-            <path
-              d='M12.0488 25.9805H31.9506'
-              stroke='#27272A'
-              strokeWidth='1.71'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
+          <p className='w-[77px] lg:flex hidden'>Sign In</p>
+          <button onClick={handleToggle} className='lg:hidden flex'>
+            <svg
+              width='44'
+              height='44'
+              viewBox='0 0 44 44'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M12.0488 18.0195H31.9506'
+                stroke='#27272A'
+                strokeWidth='1.71'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+              <path
+                d='M12.0488 25.9805H31.9506'
+                stroke='#27272A'
+                strokeWidth='1.71'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </button>
         </div>
       </div>
+      {isOpen && (
+        <div className='lg:hidden flex flex-col text-center mx-auto w-full max-w-[834px] mt-[-27px] px-5 bg-white text-zinc-700 border-b border-l border-r rounded-bl-2xl rounded-br-2xl max-sm:max-w-[375px]'>
+          <Link className='py-2' href='/'>
+            Home
+          </Link>
+          <Link className='py-2' href='/news'>
+            News
+          </Link>
+          <Link className='py-2' href='#'>
+            Events
+          </Link>
+          <Link className='py-2' href='#'>
+            Clubs
+          </Link>
+          <Link className='py-2' href='#'>
+            Mentors
+          </Link>
+          <Link className='pt-2 pb-4' href='#'>
+            About Us
+          </Link>
+          <div className='flex pb-[72px] justify-center items-center'>
+            <button className='flex px-2 py-2 w-[120px] border rounded-3xl'>
+              <svg
+                width='24'
+                height='24'
+                viewBox='0 0 25 24'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+                className='mr-1'
+              >
+                <path
+                  d='M10.9072 19.1644C15.7434 19.1644 19.664 15.2439 19.664 10.4077C19.664 5.57142 15.7434 1.65088 10.9072 1.65088C6.07093 1.65088 2.15039 5.57142 2.15039 10.4077C2.15039 15.2439 6.07093 19.1644 10.9072 19.1644Z'
+                  stroke='#71717A'
+                  strokeWidth='1.71'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+                <path
+                  d='M22.8479 22.3489L17.2754 16.7764'
+                  stroke='#71717A'
+                  strokeWidth='1.71'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
+              </svg>
+              Search...
+            </button>
+          </div>
+          <div className='flex justify-center items-center h-11 pb-4'>
+            <div className='pr-2 w-[66p] lg:hidden flex'>
+              <Menu>
+                <MenuButton className='flex items-center'>
+                  <p className='flex font-bold'>
+                    <svg
+                      width='24'
+                      height='24'
+                      viewBox='0 0 24 24'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                      className='mr-1'
+                    >
+                      <g clipPath='url(#clip0_6178_1605)'>
+                        <path
+                          d='M11.9993 22.3487C17.715 22.3487 22.3482 17.7154 22.3482 11.9998C22.3482 6.28425 17.715 1.65088 11.9993 1.65088C6.28377 1.65088 1.65039 6.28425 1.65039 11.9998C1.65039 17.7154 6.28377 22.3487 11.9993 22.3487Z'
+                          stroke='#71717A'
+                          strokeWidth='1.71'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                        <path
+                          d='M1.65039 12H22.3482'
+                          stroke='#71717A'
+                          strokeWidth='1.71'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                        <path
+                          d='M15.9802 11.9998C15.7847 15.7843 14.3908 19.4085 11.9999 22.3487C9.609 19.4085 8.21505 15.7843 8.01953 11.9998C8.21505 8.2153 9.609 4.59101 11.9999 1.65088C14.3908 4.59101 15.7847 8.2153 15.9802 11.9998Z'
+                          stroke='#71717A'
+                          strokeWidth='1.71'
+                          strokeLinecap='round'
+                          strokeLinejoin='round'
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id='clip0_6178_1605'>
+                          <rect width='24' height='24' fill='white' />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    EN
+                  </p>
+                </MenuButton>
+                <MenuItems
+                  transition
+                  anchor='top'
+                  className='w-52 mt-4 p-2 rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-2xl bg-white text-zinc-700 transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0'
+                >
+                  <MenuItem>
+                    <a
+                      href='#'
+                      className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-pink-200'
+                    >
+                      Vietnamese
+                    </a>
+                  </MenuItem>
+                  <MenuItem>
+                    <a
+                      href='#'
+                      className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-pink-200'
+                    >
+                      English
+                    </a>
+                  </MenuItem>
+                </MenuItems>
+              </Menu>
+            </div>
+            <p className='w-[77px] lg:hidden flex'>Sign In</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
