@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Mulish, Crimson_Pro } from 'next/font/google'
 import './globals.css'
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+
+const mulish = Mulish({
+  variable: '--font-mulish',
+  subsets: ['latin', 'vietnamese'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const crimsonPro = Crimson_Pro({
+  variable: '--font-crimson-pro',
+  subsets: ['latin', 'vietnamese'],
 })
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`max-w-[1140px] m-auto bg-primary-50 font-secondary ${mulish.variable} ${crimsonPro.variable} antialiased`}
       >
         {children}
       </body>
