@@ -37,7 +37,7 @@ export default function NavBar() {
               >
                 <MenuItem>
                   <Link
-                    href='#'
+                    href='/events'
                     className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-pink-200'
                   >
                     Events
@@ -45,7 +45,7 @@ export default function NavBar() {
                 </MenuItem>
                 <MenuItem>
                   <Link
-                    href='#'
+                    href='/clubs'
                     className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-pink-200'
                   >
                     Clubs
@@ -53,7 +53,7 @@ export default function NavBar() {
                 </MenuItem>
                 <MenuItem>
                   <Link
-                    href='#'
+                    href='/mentors'
                     className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-pink-200'
                   >
                     Mentors
