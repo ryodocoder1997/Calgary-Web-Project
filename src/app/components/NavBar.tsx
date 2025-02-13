@@ -3,11 +3,12 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import Link from 'next/link'
 
 function NavBar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
+  // const dropdown = useRef(null)
 
   const Menus = [
     { title: 'Home', path: '/' },
@@ -24,9 +25,20 @@ function NavBar() {
     { title: 'About Us', path: '/aboutus' },
   ]
 
-  // const handleToggle = () => {
-  //   setIsMenuOpen(!isMenuOpen)
-  // }
+  const Languages = [{ title: 'Vietnamese' }, { title: 'English' }]
+
+  // useEffect(() => {
+  //   // only add the event listener when the dropdown is opened
+  //   if (!isSubMenuOpen) return
+  //   function handleClick(event) {
+  //     if (dropdown.current && !dropdown.current.contains(event.target)) {
+  //       setIsSubMenuOpen(false)
+  //     }
+  //   }
+  //   window.addEventListener('click', handleClick)
+  //   // clean up
+  //   return () => window.removeEventListener('click', handleClick)
+  // }, [isSubMenuOpen])
 
   return (
     <div className='flex sticky justify-between mx-auto my-3 px-5 py-2.5 w-full max-w-[1140px] h-[76px] items-center bg-white text-zinc-700 border rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:max-w-[834px] max-lg:h-fit max-lg:pb-16 max-sm:max-w-[375px] max-sm:h-fit max-sm:pb-[72px]'>
@@ -119,7 +131,7 @@ function NavBar() {
                           viewBox='0 0 19 18'
                           fill='none'
                           xmlns='http://www.w3.org/2000/svg'
-                          className={`inline-flex ml-2 ${isSubMenuOpen ? 'rotate-180' : ''}`}
+                          className={`inline-flex ml-2 ${isSubMenuOpen ? 'rotate-180' : ''} duration-200`}
                         >
                           <path
                             d='M3 6L9.375 12.375L15.75 6'
@@ -201,72 +213,64 @@ function NavBar() {
       </div>
       <div className='flex max-w-[252px] justify-end items-center'>
         <div className='pr-2 w-[66px] lg:flex hidden'>
-          <Menu>
-            <MenuButton className='flex items-center'>
-              <p className='flex font-bold'>
-                <svg
-                  width='24'
-                  height='24'
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='mr-1'
+          <button
+            onClick={() => {
+              setIsLanguageMenuOpen(!isLanguageMenuOpen)
+            }}
+          >
+            <p className='flex font-bold'>
+              <svg
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'
+                className='mr-1'
+              >
+                <g clipPath='url(#clip0_6178_1605)'>
+                  <path
+                    d='M11.9993 22.3487C17.715 22.3487 22.3482 17.7154 22.3482 11.9998C22.3482 6.28425 17.715 1.65088 11.9993 1.65088C6.28377 1.65088 1.65039 6.28425 1.65039 11.9998C1.65039 17.7154 6.28377 22.3487 11.9993 22.3487Z'
+                    stroke='#71717A'
+                    strokeWidth='1.71'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M1.65039 12H22.3482'
+                    stroke='#71717A'
+                    strokeWidth='1.71'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M15.9802 11.9998C15.7847 15.7843 14.3908 19.4085 11.9999 22.3487C9.609 19.4085 8.21505 15.7843 8.01953 11.9998C8.21505 8.2153 9.609 4.59101 11.9999 1.65088C14.3908 4.59101 15.7847 8.2153 15.9802 11.9998Z'
+                    stroke='#71717A'
+                    strokeWidth='1.71'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </g>
+                <defs>
+                  <clipPath id='clip0_6178_1605'>
+                    <rect width='24' height='24' fill='white' />
+                  </clipPath>
+                </defs>
+              </svg>
+              EN
+            </p>
+          </button>
+          {isLanguageMenuOpen && (
+            <ul className='absolute inline top-16 right-1 w-48 p-2 bg-white shadow-lg shadow-black rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
+              {Languages.map((language, index) => (
+                <div
+                  key={index}
+                  className='flex justify-between items-center hover:bg-pink-200 rounded-md group'
                 >
-                  <g clipPath='url(#clip0_6178_1605)'>
-                    <path
-                      d='M11.9993 22.3487C17.715 22.3487 22.3482 17.7154 22.3482 11.9998C22.3482 6.28425 17.715 1.65088 11.9993 1.65088C6.28377 1.65088 1.65039 6.28425 1.65039 11.9998C1.65039 17.7154 6.28377 22.3487 11.9993 22.3487Z'
-                      stroke='#71717A'
-                      strokeWidth='1.71'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M1.65039 12H22.3482'
-                      stroke='#71717A'
-                      strokeWidth='1.71'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                    <path
-                      d='M15.9802 11.9998C15.7847 15.7843 14.3908 19.4085 11.9999 22.3487C9.609 19.4085 8.21505 15.7843 8.01953 11.9998C8.21505 8.2153 9.609 4.59101 11.9999 1.65088C14.3908 4.59101 15.7847 8.2153 15.9802 11.9998Z'
-                      stroke='#71717A'
-                      strokeWidth='1.71'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id='clip0_6178_1605'>
-                      <rect width='24' height='24' fill='white' />
-                    </clipPath>
-                  </defs>
-                </svg>
-                EN
-              </p>
-            </MenuButton>
-            <MenuItems
-              transition
-              anchor='top'
-              className='w-52 mt-4 p-2 rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-2xl bg-white text-zinc-700 transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0'
-            >
-              <MenuItem>
-                <a
-                  href='#'
-                  className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-pink-200'
-                >
-                  Vietnamese
-                </a>
-              </MenuItem>
-              <MenuItem>
-                <a
-                  href='#'
-                  className='group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-pink-200'
-                >
-                  English
-                </a>
-              </MenuItem>
-            </MenuItems>
-          </Menu>
+                  <li className='block px-4 py-2'>{language.title}</li>
+                </div>
+              ))}
+            </ul>
+          )}
         </div>
         <p className='w-[77px] lg:flex hidden'>Sign In</p>
         <button onClick={() => {}} className='lg:hidden flex'>
