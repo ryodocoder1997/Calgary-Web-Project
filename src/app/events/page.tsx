@@ -55,32 +55,42 @@ export default function Events() {
                 </div>
             </div>
 
-            <div className='flex items-center bg-black py-100 space-y-6 rounded-xl'>
-                <div className='bg-white w-1/2 m-5 '>
+            <div className='flex items-center bg-yellow-100 py-100 space-y-6 rounded-xl'>
+                <div className='bg-white w-1/2 m-5 h-96 w-6/12 rounded-xl content-center justify-center place-content-center'>
                     <p>Upcoming Events</p>
                 </div>
                 <div className='bg-white w-1/2 m-5'>
-                    <p>Past Events</p>
+                    <h2 className='font-black text-4xl'>Event Name!</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita quidem consequatur in, numquam ducimus inventore veritatis ut corrupti aliquid, quos placeat. Odit consequatur dicta fugiat optio inventore itaque illum aliquam.</p>
                 </div>
             </div>
 
-            <div className='max-w-7xl mx-uto px-6 py-12'>
-                <h2 className='text-3xl font-bold mb-6'>Coming Events</h2>
+            <div className='flex flex-col max-w-6xl mx-auto px-6 py-12'>
+                <div className='flex'>
+                    <h2 className='text-3xl font-bold mb-6'>Coming Events</h2>
 
-                <div className='realtive'>
-                    <button onClick={scrollLeft} className='absolute top-1/2 left-0 transform -translate-y-1/2 bg-white rounded-full p-2'> {'<'} </button>
+                    <div className='self-end place-self-end justify-self-end '>
+                        <button
+                            onClick={scrollLeft}
+                            className='top-1/2 right-6 transform -translate-y-1/2 bg-white rounded-full p-2'
+                        >
+                            {'<'}
+
+                        </button>
+                        <button
+                            onClick={scrollRight}
+                            className="top-1/2 right-0 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full"
+                        >
+                            {'>'}
+                        </button>
+                    </div>
                 </div>
-                <button
-                    onClick={scrollRight}
-                    className="justify-right top-1/2 transform -translate-y-1/2 z-10 bg-white p-2 rounded-full"
-                >
-                    {'>'}
-                </button>
 
-                <div ref={scrollRef} className='flex space-x-4 overflow-x-scroll'>
+
+                <div ref={scrollRef} className='flex space-x-4 overflow-x-scroll overflow-hidden no-scrollbar'>
                     {events.map((event) => (
                         <div key={event.id} className='w-96 bg-white rounded-xl p-4'>
-                            <div className='bg-yellow-100 h-32 flex items-center justify-center rounded-lg'>
+                            <div className='bg-yellow-100 h-60 w-80 flex items-center justify-center rounded-lg'>
                                 <p className='text-lg font-semibold'>Events Image</p>
                             </div>
                             <h3>{event.title}</h3>
