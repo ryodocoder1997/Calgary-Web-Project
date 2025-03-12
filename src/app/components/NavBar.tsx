@@ -5,6 +5,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Menus, Languages } from '@/app/constants/forNavBar'
 
 function NavBar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
@@ -12,31 +13,18 @@ function NavBar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [checkLanguageType, setCheckLanguageType] = useState(false)
 
-  const Menus = [
-    { title: 'Home', path: '/' },
-    { title: 'News', path: '/news' },
-    {
-      title: 'Resources',
-      submenu: true,
-      submenuItems: [
-        { title: 'Events', path: 'events' },
-        { title: 'Clubs', path: '/clubs' },
-        { title: 'Mentors', path: '/mentors' },
-      ],
-    },
-    { title: 'About Us', path: '/aboutus' },
-  ]
-
-  const Languages = [{ title: 'Vietnamese' }, { title: 'English' }]
-
-  const MobileMenus = [
-    { title: 'Home', path: '/' },
-    { title: 'News', path: '/news' },
-    { title: 'Events', path: 'events' },
-    { title: 'Clubs', path: '/clubs' },
-    { title: 'Mentors', path: '/mentors' },
-    { title: 'About Us', path: '/aboutus' },
-  ]
+  const MobileMenus = Menus.flatMap(menu =>
+    menu.submenu && menu.submenuItems
+      ? menu.submenuItems.map(submenuItem => ({
+          title: submenuItem.title,
+          path: submenuItem.path,
+        }))
+      : {
+          title: menu.title,
+          path: menu.path,
+        },
+  )
+  // console.log("MobileMenus", MobileMenus)
 
   return (
     <div className='flex flex-col sticky mx-auto items-center text-zinc-700 max-w-[1140px] h-[76px] max-lg:max-w-[834px] max-lg:h-fit max-sm:max-w-[375px] max-sm:h-fit'>
@@ -50,6 +38,7 @@ function NavBar() {
               alt='Young Viet Calgary (YYC) Logo'
               width={100}
               height={44}
+              priority
             />
           </Link>
         </div>
@@ -76,13 +65,14 @@ function NavBar() {
                             alt='Down arrow for the dropdown menu'
                             width={18}
                             height={18}
+                            style={{ width: '18px', height: '18px' }}
                             className={`inline-flex ml-1 ${isSubMenuOpen ? 'rotate-180' : ''} duration-200`}
                           />
                         </button>
                       )}
                     </li>
                   </Link>
-                  {menu.submenu && isSubMenuOpen && (
+                  {menu.submenu && menu.submenuItems && isSubMenuOpen && (
                     <ul className='absolute inline left-auto w-48 p-2 bg-white shadow-lg shadow-black rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
                       {menu.submenuItems.map((submenuItem, index) => (
                         <Link
