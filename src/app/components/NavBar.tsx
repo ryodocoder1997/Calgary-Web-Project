@@ -41,7 +41,7 @@ function NavBar() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setIsMobileMenuOpen(false); // Close the mobile menu on larger screens
+        setIsMobileMenuOpen(false);
       }
     };
 
