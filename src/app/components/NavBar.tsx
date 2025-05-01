@@ -2,7 +2,7 @@
 
 'use client'
 
-import React, { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menus, Languages } from '@/app/constants/forNavBar'
@@ -11,7 +11,46 @@ function NavBar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [checkLanguageType, setCheckLanguageType] = useState(false)
+  const [languageType, setLanguageType] = useState('English')
+
+  const subMenuRef = useRef<HTMLDivElement>(null)
+  const languageMenuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        subMenuRef.current &&
+        !subMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsSubMenuOpen(false)
+      }
+      if (
+        languageMenuRef.current &&
+        !languageMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsLanguageMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false); // Close the mobile menu on larger screens
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const MobileMenus = Menus.flatMap(menu =>
     menu.submenu && menu.submenuItems
@@ -24,7 +63,6 @@ function NavBar() {
           path: menu.path,
         },
   )
-  // console.log("MobileMenus", MobileMenus)
 
   return (
     <div className='flex flex-col sticky mx-auto items-center text-zinc-700 max-w-[1140px] h-[76px] max-lg:max-w-[834px] max-lg:h-fit max-sm:max-w-[375px] max-sm:h-fit'>
@@ -46,11 +84,11 @@ function NavBar() {
           <ul className='flex justify-between items-center'>
             {Menus.map((menu, index) => {
               return (
-                <div key={index}>
+                <div key={index} ref={menu.title === 'Resources' ? subMenuRef : null}>
                   <Link href={menu.path || '#'}>
                     <li className='px-4 py-4 mr-2 min-h-11 text-center'>
                       <span
-                        className={`inline-flex text-base font-medium flex-1 items-center`}
+                        className={`inline-flex text-base font-normal flex-1 items-center ${menu.title === 'Resources' && 'hidden'}`}
                       >
                         {menu.title}
                       </span>
@@ -60,6 +98,9 @@ function NavBar() {
                             setIsSubMenuOpen(!isSubMenuOpen)
                           }}
                         >
+                          <span className='inline-flex text-base font-normal flex-1 items-center'>
+                            Resources
+                          </span>
                           <Image
                             src='downarrow.svg'
                             alt='Down arrow for the dropdown menu'
@@ -112,29 +153,47 @@ function NavBar() {
           </button>
         </div>
         <div className='flex max-w-[252px] justify-end items-center'>
-          <div className='pr-2 w-[66px] lg:flex hidden'>
+          <div className='pr-2 w-[66px] lg:flex hidden' ref={languageMenuRef}>
             <button
               onClick={() => {
                 setIsLanguageMenuOpen(!isLanguageMenuOpen)
               }}
             >
-              <p className='flex font-bold'>
-                <Image
-                  src='globe.svg'
-                  alt='Globe icon for changing languages'
-                  width={24}
-                  height={24}
-                  className='mr-1'
-                />
-                EN
-              </p>
+              {languageType === 'English' && (
+                <p className='flex font-bold'>
+                  <Image
+                    src='globe.svg'
+                    alt='Globe icon for changing languages'
+                    width={24}
+                    height={24}
+                    className='mr-1'
+                  />
+                  EN
+                </p>
+              )}
+              {languageType === 'Vietnamese' && (
+                <p className='flex font-bold'>
+                  <Image
+                    src='globe.svg'
+                    alt='Globe icon for changing languages'
+                    width={24}
+                    height={24}
+                    className='mr-1'
+                  />
+                  VI
+                </p>
+              )}
             </button>
             {isLanguageMenuOpen && (
               <ul className='absolute inline top-16 right-1 w-48 p-2 bg-white shadow-lg shadow-black rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
                 {Languages.map((language, index) => (
                   <div
                     key={index}
-                    className='flex justify-between items-center hover:bg-pink-200 rounded-md group'
+                    onClick={() => {
+                      setLanguageType(language.title)
+                      setIsLanguageMenuOpen(false)
+                    }}
+                    className='flex justify-between items-center hover:bg-pink-200 rounded-md hover:cursor-pointer'
                   >
                     <li className='block px-4 py-2'>{language.title}</li>
                   </div>
@@ -142,7 +201,9 @@ function NavBar() {
               </ul>
             )}
           </div>
-          <p className='w-[77px] lg:flex hidden'>Sign In</p>
+          <p className='w-[77px] lg:flex hidden hover:cursor-pointer'>
+            Sign In
+          </p>
           <button
             onClick={() => {
               setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -162,7 +223,7 @@ function NavBar() {
         <ul className='flex flex-col w-full p-2 bg-white border border-t-0 rounded-bl-2xl rounded-br-2xl'>
           {MobileMenus.map((mobilemenu, index) => (
             <Link
-              href={mobilemenu.path}
+              href={mobilemenu.path || '#'}
               key={index}
               className='self-center mb-2 w-full hover:bg-pink-200 rounded-md group'
             >
@@ -183,10 +244,10 @@ function NavBar() {
             <div className='pr-10'>
               <button
                 onClick={() => {
-                  setCheckLanguageType(!checkLanguageType)
+                  setLanguageType(languageType)
                 }}
               >
-                {checkLanguageType === false ? (
+                {languageType === 'English' && (
                   <p className='flex font-bold'>
                     <Image
                       src='globe.svg'
@@ -197,7 +258,8 @@ function NavBar() {
                     />
                     EN
                   </p>
-                ) : (
+                )}
+                {languageType === 'Vietnamese' && (
                   <p className='flex font-bold'>
                     <Image
                       src='globe.svg'
@@ -215,7 +277,7 @@ function NavBar() {
                   {Languages.map((language, index) => (
                     <div
                       key={index}
-                      className='flex justify-between items-center hover:bg-pink-200 rounded-md group'
+                      className='flex justify-between items-center hover:bg-pink-200 rounded-md hover:cursor-pointer'
                     >
                       <li className='block px-4 py-2'>{language.title}</li>
                     </div>
@@ -223,7 +285,7 @@ function NavBar() {
                 </ul>
               )}
             </div>
-            <p className=''>Sign In</p>
+            <p className='hover:cursor-pointer'>Sign In</p>
           </div>
         </ul>
       )}
