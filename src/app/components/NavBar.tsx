@@ -94,7 +94,7 @@ function NavBar() {
                   <Link href={menu.path || '#'}>
                     <li
                       className={`px-4 py-4 min-h-11 text-center ${
-                        isActive ? 'font-semibold text-black' : 'font-normal'
+                        isActive ? 'font-semibold' : 'font-normal'
                       }`}
                     >
                       <span
@@ -235,15 +235,20 @@ function NavBar() {
       </div>
       {isMobileMenuOpen && (
         <ul className='flex flex-col w-full p-2 bg-white border border-t-0 rounded-bl-2xl rounded-br-2xl'>
-          {MobileMenus.map((mobilemenu, index) => (
-            <Link
-              href={mobilemenu.path || '#'}
-              key={index}
-              className='self-center mb-2 w-full hover:bg-pink-200 rounded-md group'
-            >
-              <li className='text-center px-4 py-2'>{mobilemenu.title}</li>
-            </Link>
-          ))}
+          {MobileMenus.map((mobilemenu, index) => {
+            const isActive = pathname === mobilemenu.path
+            return (
+              <Link
+                href={mobilemenu.path || '#'}
+                key={index}
+                className={`self-center mb-2 w-full hover:bg-pink-200 rounded-md ${
+                  isActive ? 'font-semibold' : 'font-normal'
+                }`}
+              >
+                <li className='text-center px-4 py-2'>{mobilemenu.title}</li>
+              </Link>
+            )
+          })}
           <button className='flex self-center mt-2 pl-2 pr-24 py-2 border rounded-3xl'>
             <Image
               src='magnifyingglass.svg'
