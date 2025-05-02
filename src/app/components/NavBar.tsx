@@ -258,7 +258,9 @@ function NavBar() {
             <div className='pr-10'>
               <button
                 onClick={() => {
-                  setLanguageType(languageType)
+                  setLanguageType(languageType =>
+                    languageType === 'English' ? 'Vietnamese' : 'English',
+                  )
                 }}
               >
                 {languageType === 'English' && (
