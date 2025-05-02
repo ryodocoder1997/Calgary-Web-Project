@@ -6,6 +6,7 @@ import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Menus, Languages } from '@/app/constants/forNavBar'
+import { usePathname } from 'next/navigation'
 
 function NavBar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
@@ -15,6 +16,7 @@ function NavBar() {
 
   const subMenuRef = useRef<HTMLDivElement>(null)
   const languageMenuRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -41,16 +43,16 @@ function NavBar() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setIsMobileMenuOpen(false);
+        setIsMobileMenuOpen(false)
       }
-    };
+    }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const MobileMenus = Menus.flatMap(menu =>
     menu.submenu && menu.submenuItems
@@ -83,12 +85,22 @@ function NavBar() {
         <div className='lg:flex max-w-[535px] items-center hidden'>
           <ul className='flex justify-between items-center'>
             {Menus.map((menu, index) => {
+              const isActive = pathname === menu.path
               return (
-                <div key={index} ref={menu.title === 'Resources' ? subMenuRef : null}>
+                <div
+                  key={index}
+                  ref={menu.title === 'Resources' ? subMenuRef : null}
+                >
                   <Link href={menu.path || '#'}>
-                    <li className='px-4 py-4 mr-2 min-h-11 text-center'>
+                    <li
+                      className={`px-4 py-4 min-h-11 text-center ${
+                        isActive ? 'font-semibold text-black' : 'font-normal'
+                      }`}
+                    >
                       <span
-                        className={`inline-flex text-base font-normal flex-1 items-center ${menu.title === 'Resources' && 'hidden'}`}
+                        className={`inline-flex text-base flex-1 items-center ${
+                          menu.title === 'Resources' && 'hidden'
+                        }`}
                       >
                         {menu.title}
                       </span>
@@ -107,7 +119,9 @@ function NavBar() {
                             width={18}
                             height={18}
                             style={{ width: '18px', height: '18px' }}
-                            className={`inline-flex ml-1 ${isSubMenuOpen ? 'rotate-180' : ''} duration-200`}
+                            className={`inline-flex ml-1 ${
+                              isSubMenuOpen ? 'rotate-180' : ''
+                            } duration-200`}
                           />
                         </button>
                       )}
