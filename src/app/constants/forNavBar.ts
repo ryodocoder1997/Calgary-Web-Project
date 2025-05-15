@@ -12,5 +12,3 @@ export const Menus = [
   },
   { title: 'About Us', submenu: false, path: '/aboutus' },
 ]
-
-export const Languages = [{ title: 'Vietnamese' }, { title: 'English' }]
