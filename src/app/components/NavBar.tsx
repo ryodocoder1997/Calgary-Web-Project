@@ -32,22 +32,17 @@ function NavBar() {
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
-
-  useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsMobileMenuOpen(false)
       }
     }
 
+    document.addEventListener('mousedown', handleClickOutside)
     window.addEventListener('resize', handleResize)
 
     return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
       window.removeEventListener('resize', handleResize)
     }
   }, [])
