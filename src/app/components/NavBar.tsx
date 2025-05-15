@@ -3,14 +3,16 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menus, Languages } from '@/app/constants/forNavBar'
+import { Menus } from '@/app/constants/forNavBar'
 import { usePathname } from 'next/navigation'
+import { AppSettings } from '@/app/constants/global.const'
 
 function NavBar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [languageType, setLanguageType] = useState('English')
+  const [languageType, setLanguageType] = useState(AppSettings.defaultLanguage)
+  const languages = AppSettings.supportedLanguages.filter(lang => lang)
 
   const subMenuRef = useRef<HTMLDivElement>(null)
   const languageMenuRef = useRef<HTMLDivElement>(null)
@@ -193,16 +195,16 @@ function NavBar() {
             </button>
             {isLanguageMenuOpen && (
               <ul className='absolute inline top-16 right-1 w-48 p-2 bg-white shadow-lg shadow-black rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
-                {Languages.map((language, index) => (
+                {languages.map((language, index) => (
                   <div
                     key={index}
                     onClick={() => {
-                      setLanguageType(language.title)
+                      setLanguageType(language)
                       setIsLanguageMenuOpen(false)
                     }}
                     className='flex justify-between items-center hover:bg-pink-200 rounded-md hover:cursor-pointer'
                   >
-                    <li className='block px-4 py-2'>{language.title}</li>
+                    <li className='block px-4 py-2'>{language}</li>
                   </div>
                 ))}
               </ul>
@@ -288,12 +290,12 @@ function NavBar() {
               </button>
               {isLanguageMenuOpen && (
                 <ul className='w-48 p-2 bg-white shadow-lg shadow-black rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl'>
-                  {Languages.map((language, index) => (
+                  {languages.map((language, index) => (
                     <div
                       key={index}
                       className='flex justify-between items-center hover:bg-pink-200 rounded-md hover:cursor-pointer'
                     >
-                      <li className='block px-4 py-2'>{language.title}</li>
+                      <li className='block px-4 py-2'>{language}</li>
                     </div>
                   ))}
                 </ul>
