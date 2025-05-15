@@ -62,7 +62,7 @@ function NavBar() {
   )
 
   return (
-    <div className='flex flex-col sticky mx-auto items-center text-zinc-700 max-w-[1140px] h-[76px] max-lg:max-w-[834px] max-lg:h-fit max-sm:max-w-[375px] max-sm:h-fit'>
+    <nav className='flex flex-col sticky mx-auto items-center text-zinc-700 max-w-[1140px] h-[76px] max-lg:max-w-[834px] max-lg:h-fit max-sm:max-w-[375px] max-sm:h-fit'>
       <div
         className={`flex sticky justify-between my-3 px-5 py-2.5 w-full max-w-[1140px] h-[76px] items-center bg-white text-zinc-700 border ${isMobileMenuOpen && 'border-b-0 rounded-bl-none rounded-br-none'} rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:max-w-[834px] max-lg:h-fit max-lg:mb-0 max-sm:max-w-[375px] max-sm:h-fit`}
       >
@@ -305,7 +305,7 @@ function NavBar() {
           </div>
         </ul>
       )}
-    </div>
+    </nav>
   )
 }
 
