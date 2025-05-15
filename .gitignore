@@ -52,3 +52,4 @@ next-env.d.ts
 *.ntvs*
 *.njsproj
 *.sln
+package-lock.json
