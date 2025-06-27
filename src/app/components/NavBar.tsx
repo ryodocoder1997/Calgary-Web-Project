@@ -3,9 +3,8 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menus } from '@/app/constants/forNavBar'
+import { Menus, AppSettings } from '@/app/constants/global.const'
 import { usePathname } from 'next/navigation'
-import { AppSettings } from '@/app/constants/global.const'
 
 function NavBar() {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
@@ -49,6 +48,10 @@ function NavBar() {
     }
   }, [])
 
+  const NavBarMenus = Menus.filter(
+    menu => menu.title !== 'Volunteer' && menu.title !== 'FAQs',
+  )
+
   const MobileMenus = Menus.flatMap(menu =>
     menu.submenu && menu.submenuItems
       ? menu.submenuItems.map(submenuItem => ({
@@ -80,7 +83,7 @@ function NavBar() {
           </div>
           <div className='lg:flex max-w-[535px] items-center hidden'>
             <ul className='flex justify-between items-center'>
-              {Menus.map((menu, index) => {
+              {NavBarMenus.map((menu, index) => {
                 const isActive = pathname === menu.path
                 return (
                   <div
