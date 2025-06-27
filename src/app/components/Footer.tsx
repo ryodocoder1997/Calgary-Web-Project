@@ -1,9 +1,22 @@
+'use client'
+
 import Link from 'next/link'
 import React from 'react'
 import StarSVG from '@/../public/star'
 import ConfettiSVG from '@/../public/confetti'
+import { Menus, Socials } from '@/app/constants/global.const'
+import { usePathname } from 'next/navigation'
 
 export default function Footer() {
+  const pathname = usePathname()
+
+  const resourcesMenu = Menus.find(menu => menu.title === 'Resources')
+  const submenuItems = resourcesMenu?.submenuItems || []
+
+  const FooterMenus = [...Menus, ...submenuItems, ...Socials].filter(
+    menu => menu.title !== 'Home' && menu.title !== 'Resources',
+  )
+
   return (
     <footer className='bg-[#FFFAF2] pt-14 pb-6'>
       <div className='flex flex-col w-full max-w-[1140px] max-lg:max-w-[770px] max-sm:max-w-[343px] mx-auto'>
@@ -28,36 +41,20 @@ export default function Footer() {
           </div>
           <div className='flex'>
             <div className='grid items-center grid-cols-3 gap-x-9 gap-y-3 text-secondary-700'>
-              <Link href='/news' className='text-base lg:text-lg font-bold'>
-                News
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                Volunteer
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                Instagram
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                Clubs
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                FAQs
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                Facebook
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                Mentor
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                About Us
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                Youtube
-              </Link>
-              <Link href='#' className='text-base lg:text-lg font-bold'>
-                Events
-              </Link>
+              {FooterMenus.map((menu, index) => {
+                const isActive = pathname === menu.path
+                return (
+                  <div key={index}>
+                    <Link
+                      href={menu.path || '#'}
+                      key={index}
+                      className={`text-base lg:text-lg font-bold ${isActive ? 'font-semibold' : 'font-normal'}`}
+                    >
+                      {menu.title}
+                    </Link>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
