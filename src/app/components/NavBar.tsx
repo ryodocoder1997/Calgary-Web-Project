@@ -62,10 +62,10 @@ function NavBar() {
   )
 
   return (
-    <div className='w-full bg-[#FAE7F3] flex justify-center'>
+    <div className='w-full flex justify-center sticky top-0'>
       <nav className='w-[1140px] max-lg:w-[834px] max-sm:w-[375px] text-zinc-700'>
         <div
-          className={`flex sticky justify-between my-3 px-5 py-2.5 h-[76px] items-center bg-white border ${isMobileMenuOpen && 'border-b-0 rounded-bl-none rounded-br-none'} rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:h-fit max-lg:mb-0 max-sm:h-fit`}
+          className={`flex justify-between my-3 px-5 py-2.5 h-[76px] items-center bg-white border ${isMobileMenuOpen && 'border-b-0 rounded-bl-none rounded-br-none'} rounded-tl-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl max-lg:h-fit max-lg:mb-0 max-sm:h-fit`}
         >
           <div className='max-w-[252px]'>
             <Link href='/'>
